@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - LMS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-page">
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <div class="logo-container">
+    <img src="https://storage.googleapis.com/oa_disk001/pcc/147/school_logo/1723516719-730.jpg" alt="PCC Logo" class="sidebar-logo">
+    <h2>PCC LMS</h2>
+</div>
+
+        <ul>
+            <li class="active"><a href="dashboard.html">Home</a></li>
+            <li><a href="add-book.html">Add Book</a></li>
+            <li><a href="borrowed.html">Borrowed List</a></li>
+            <li id="logout">Logout</li>
+        </ul>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+
+        <div class="topbar">
+            <h1>Dashboard</h1>
+            <span id="userRoleBadge"></span>
+        </div>
+
+        <!-- STATS -->
+        <div class="cards">
+            <div class="card">
+                <h3>Total Books</h3>
+                <p id="totalBooks">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Borrowed</h3>
+                <p id="borrowedCount">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Users</h3>
+                <p id="totalUsers">0</p>
+            </div>
+        </div>
+
+        <br><br>
+
+        <!-- CHARTS -->
+        <div class="charts">
+            <div class="chart-box">
+                <canvas id="lineChart"></canvas>
+            </div>
+            <div class="chart-box">
+                <canvas id="pieChart"></canvas>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

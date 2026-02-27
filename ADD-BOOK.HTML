@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Book - LMS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-page">
+
+<div class="dashboard">
+
+    <div class="sidebar">
+        <div class="logo-container">
+    <img src="https://storage.googleapis.com/oa_disk001/pcc/147/school_logo/1723516719-730.jpg" alt="PCC Logo" class="sidebar-logo">
+    <h2>PCC LMS</h2>
+</div>
+        <ul>
+            <li><a href="dashboard.html">Home</a></li>
+            <li class="active"><a href="add-book.html">Add Book</a></li>
+            <li><a href="borrowed.html">Borrowed List</a></li>
+            <li id="logout">Logout</li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="topbar">
+            <h1>Add New Book</h1>
+        </div>
+
+        <div class="form-card">
+            <form id="bookForm">
+                <input type="text" id="bookTitle" placeholder="Book Title" required>
+                <input type="text" id="bookAuthor" placeholder="Author" required>
+                <input type="text" id="bookCategory" placeholder="Category" required>
+                <button type="submit">Add Book</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

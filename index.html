@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pasig Catholic College Library System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-body">
+
+<div class="auth-container">
+
+<div class="left-panel">
+
+ <div class="logo-wrapper">
+    <img src="https://storage.googleapis.com/oa_disk001/pcc/147/school_logo/1723516719-730.jpg" alt="PCC Logo" class="auth-logo">
+</div>
+
+    <h1>Pasig Catholic College</h1>
+    <h3>Library Management System</h3>
+    <p>Persons of Character and Competence</p>
+
+</div>
+
+    <div class="right-panel">
+
+        <!-- LOGIN -->
+        <div id="loginSection" class="form-section active">
+            <h2>Welcome Back</h2>
+
+            <div class="role-select">
+                <button class="role-btn" data-role="Student">Student</button>
+                <button class="role-btn" data-role="Admin">Admin</button>
+            </div>
+
+            <form id="loginForm">
+                <input type="hidden" id="loginRole">
+                <input type="text" id="loginUsername" placeholder="Username" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <button type="submit" class="primary-btn">Login</button>
+            </form>
+
+            <p>Don't have an account?
+                <span id="showRegister" class="link-btn">Register</span>
+            </p>
+        </div>
+
+        <!-- REGISTER -->
+        <div id="registerSection" class="form-section">
+            <h2>Create Account</h2>
+
+            <div class="role-select">
+                <button class="role-btn" data-role="Student">Student</button>
+                <button class="role-btn" data-role="Admin">Admin</button>
+            </div>
+
+            <form id="registerForm">
+                <input type="hidden" id="registerRole">
+                <input type="text" id="regUsername" placeholder="Student ID / Username" required>
+                <input type="text" id="program" placeholder="Program / Section" required>
+                <input type="password" id="regPassword" placeholder="Password" required>
+                <div class="strength-bar"></div>
+                <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                <button type="submit" class="primary-btn">Register</button>
+            </form>
+
+            <p>Already have an account?
+                <span id="showLogin" class="link-btn">Login</span>
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
