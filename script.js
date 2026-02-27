@@ -26,11 +26,32 @@ function logout(){
 // AUTH PAGE (index.html)
 // ===============================
 
-if(document.getElementById("loginForm")){
+document.addEventListener("DOMContentLoaded", function () {
+
+    if (!document.getElementById("loginForm")) return;
+
+    // Get elements safely
+    const loginSection = document.getElementById("loginSection");
+    const registerSection = document.getElementById("registerSection");
 
     const showRegister = document.getElementById("showRegister");
     const showLogin = document.getElementById("showLogin");
 
+    const loginForm = document.getElementById("loginForm");
+    const registerForm = document.getElementById("registerForm");
+
+    const loginRole = document.getElementById("loginRole");
+    const registerRole = document.getElementById("registerRole");
+
+    const loginUsername = document.getElementById("loginUsername");
+    const loginPassword = document.getElementById("loginPassword");
+
+    const regUsername = document.getElementById("regUsername");
+    const regPassword = document.getElementById("regPassword");
+    const confirmPassword = document.getElementById("confirmPassword");
+    const program = document.getElementById("program");
+
+    // Toggle forms
     showRegister.onclick = () => {
         loginSection.classList.remove("active");
         registerSection.classList.add("active");
@@ -41,90 +62,100 @@ if(document.getElementById("loginForm")){
         loginSection.classList.add("active");
     };
 
-    document.querySelectorAll(".role-btn").forEach(btn=>{
-        btn.addEventListener("click",function(){
-            let parent = this.closest(".form-section");
+    // Role buttons
+    document.querySelectorAll(".role-btn").forEach(btn => {
+        btn.addEventListener("click", function () {
+
+            const parent = this.closest(".form-section");
 
             parent.querySelectorAll(".role-btn")
-                .forEach(b=>b.classList.remove("active"));
+                .forEach(b => b.classList.remove("active"));
 
             this.classList.add("active");
 
-            if(parent.id==="loginSection"){
+            if (parent.id === "loginSection") {
                 loginRole.value = this.dataset.role;
-            }else{
+            } else {
                 registerRole.value = this.dataset.role;
             }
         });
     });
 
     // REGISTER
-    registerForm.addEventListener("submit",function(e){
+    registerForm.addEventListener("submit", function (e) {
         e.preventDefault();
 
         const username = regUsername.value.trim();
         const password = regPassword.value;
         const confirm = confirmPassword.value;
         const role = registerRole.value;
-        const program = program.value;
+        const prog = program.value;
 
-        if(!role) return alert("Select role");
-        if(password !== confirm) return alert("Passwords do not match");
+        if (!role) return alert("Select role");
+        if (password !== confirm) return alert("Passwords do not match");
 
         let users = getData("users");
 
-        if(users.find(u=>u.username===username)){
+        if (users.find(u => u.username === username)) {
             return alert("User already exists");
         }
 
-        users.push({username,password,role,program});
-        setData("users",users);
+        users.push({
+            username: username,
+            password: password,
+            role: role,
+            program: prog
+        });
+
+        setData("users", users);
 
         alert("Registration Successful!");
         showLogin.click();
+        registerForm.reset();
     });
 
     // LOGIN
-    loginForm.addEventListener("submit",function(e){
+    loginForm.addEventListener("submit", function (e) {
         e.preventDefault();
 
         const username = loginUsername.value.trim();
         const password = loginPassword.value;
         const role = loginRole.value;
 
-        if(!role) return alert("Select role");
+        if (!role) return alert("Select role");
 
-        let users = getData("users");
+        const users = getData("users");
 
-        let user = users.find(u=>
-            u.username===username &&
-            u.password===password &&
-            u.role===role
+        const user = users.find(u =>
+            u.username === username &&
+            u.password === password &&
+            u.role === role
         );
 
-        if(!user) return alert("Invalid credentials");
+        if (!user) return alert("Invalid credentials");
 
         setLoggedUser(user);
-        window.location.href="dashboard.html";
+        window.location.href = "dashboard.html";
     });
 
     // PASSWORD STRENGTH
-    regPassword.addEventListener("input",function(){
-        let val=this.value;
-        let bar=document.querySelector(".strength-bar");
-        let strength=0;
+    regPassword.addEventListener("input", function () {
+        let val = this.value;
+        let bar = document.querySelector(".strength-bar");
+        let strength = 0;
 
-        if(val.length>5) strength++;
-        if(/[A-Z]/.test(val)) strength++;
-        if(/[0-9]/.test(val)) strength++;
-        if(/[@$!%*?&]/.test(val)) strength++;
+        if (val.length > 5) strength++;
+        if (/[A-Z]/.test(val)) strength++;
+        if (/[0-9]/.test(val)) strength++;
+        if (/[@$!%*?&]/.test(val)) strength++;
 
-        if(strength<=1) bar.style.cssText="width:25%;background:red;";
-        else if(strength==2) bar.style.cssText="width:50%;background:orange;";
-        else if(strength==3) bar.style.cssText="width:75%;background:gold;";
-        else bar.style.cssText="width:100%;background:green;";
+        if (strength <= 1) bar.style.cssText = "width:25%;background:red;";
+        else if (strength == 2) bar.style.cssText = "width:50%;background:orange;";
+        else if (strength == 3) bar.style.cssText = "width:75%;background:gold;";
+        else bar.style.cssText = "width:100%;background:green;";
     });
-}
+
+});
 
 // ===============================
 // DASHBOARD PAGES
@@ -275,4 +306,5 @@ new Chart(document.getElementById("lineChart"), {
             responsive:true
         }
     });
+
 }
